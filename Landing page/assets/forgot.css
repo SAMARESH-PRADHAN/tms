@@ -1,0 +1,148 @@
+/* Base Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: url('../assets/back.jpg') center/cover no-repeat;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main Container */
+#bdyy {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeInBody 1s ease-in-out;
+}
+
+@keyframes fadeInBody {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Card Container */
+#cntt {
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  padding: 35px 30px;
+  border-radius: 18px;
+  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  width: 700px;
+  height: 300px;
+  animation: slideInUp 0.6s ease;
+}
+
+@keyframes slideInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #fff;
+  font-size: 24px;
+  letter-spacing: 1px;
+}
+
+/* Input Fields */
+input {
+  width: 100%;
+  padding: 12px 14px;
+  margin: 12px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.4s ease;
+  background: #f8f8f8;
+}
+
+input:focus {
+  border-color: #fff;
+  box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
+  outline: none;
+  background: #fff;
+}
+
+/* Button Style */
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: linear-gradient(135deg, #f04e30, #f97316);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  z-index: 0;
+  transition: left 0.4s ease;
+}
+
+button:hover::before {
+  left: 100%;
+}
+
+button:hover {
+  transform: scale(1.02);
+}
+
+/* Transitions for Steps */
+.hidden {
+  display: none;
+}
+
+#step2,
+#step3 {
+  animation: fadeSlide 0.5s ease-in-out;
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Footer Fix */
+.ft {
+  width: 100%;
+  margin-top: auto;
+}

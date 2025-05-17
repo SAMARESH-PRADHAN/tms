@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets2/managepackage.css" />
+  </head>
+  <body>
+    <!-- <header id="headerHome"></header> -->
+
+
+    <div id="container">
+      <h2>Tour Package Management</h2>
+
+      <!-- Add Package Form -->
+      <form id="packageForm">
+        <div class="form-group">
+          <label>Package Name</label>
+          <input type="text" id="packageName" />
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea id="description"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Price (RS:)</label>
+          <input type="number" id="price" />
+        </div>
+        <div class="form-group">
+          <label>Duration (Days)</label>
+          <input type="number" id="duration" />
+        </div>
+        <div class="form-group">
+          <label>Availability Status</label>
+          <select id="availability">
+            <option value="True">Available</option>
+            <option value="False">Not Available</option>
+          </select>
+        </div>
+        <!-- Destination options will be dynamically added here -->
+        <div class="form-group">
+          <label>Destination Name</label>
+          <select id="destinationName">
+            <option value="">Select Destination</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Package Image</label>
+          <input type="file" id="packageImage" accept="image/*" />
+        </div>
+        <button type="submit" class="btn btn-add" id="packageSubmit">
+          Add Package
+        </button>
+      </form>
+
+      <!-- Packages Table -->
+      <table>
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Package Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Duration</th>
+            <th>Status</th>
+            <th>Destination Name</th>
+            <th>Image</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="packageTable">
+          <!-- Packages will be dynamically added here -->
+        </tbody>
+      </table>
+      <div id="editPackageModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h3>Edit Package</h3>
+          <form id="editPackageForm" class="editPackageForm">
+            <input type="hidden" id="editPackage_id" />
+            <label>Package Name</label>
+            <input type="text" id="editPackage_name" />
+            <label>Price (RS:)</label>
+            <input type="numeric" id="editPrice" />
+            <label>Duration (Days)</label>
+            <input type="text" id="editDuration" />
+            <label>Description</label>
+            <input type="text" id="editDescription" />
+            <label>Availability Status</label>
+            <select id="Availability">
+              <option value="True">Available</option>
+              <option value="False">Not Available</option>
+            </select>
+            <!-- Destination options will be dynamically added here -->
+            <label>Destination Name</label>
+            <select id="editDestinationName">
+              <option value="">Select Destination</option>
+            </select>
+
+            <label>Current Image</label>
+            <img
+              id="currentPackageImage"
+              src=""
+              alt="Current Image"
+              width="100"
+            />
+            <label>Update Image</label>
+            <input type="file" id="editPackageImage" accept="image/*" />
+            <button type="submit">Update</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- <footer id="footer" class="ft"></footer> -->
+    <script src="./assets2/jquery-3.7.1.min.js"></script>
+    <script src="./assets2/managepackage.js"></script>
+  </body>
+</html>

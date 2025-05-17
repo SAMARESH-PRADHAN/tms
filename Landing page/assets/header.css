@@ -1,0 +1,243 @@
+ *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+ }
+
+.nav{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 80px;
+  width: 100%;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  z-index: 1000;
+  backdrop-filter: blur(50px);
+ 
+}
+.logo img{
+  position: fixed;
+  height: 140px;
+  width: 150px;
+}
+.logo{
+  height: 50px;
+  margin-bottom: 20px;
+}
+/* === ANIMATED LOGO STYLES === */
+
+.animated-logo {
+  height: 140px;
+  width: 150px;
+  animation: glowPulse 3s infinite ease-in-out;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  border-radius: 20px;
+  filter: drop-shadow(0 0 10px #fff);
+  will-change: transform, filter;
+}
+
+.animated-logo:hover {
+  transform: scale(1.08) rotate(-3deg);
+  filter: drop-shadow(0 0 20px #fff);
+}
+
+/* Glow animation */
+@keyframes glowPulse {
+  0% {
+    filter: drop-shadow(0 0 5px #fff);
+  }
+  50% {
+    filter: drop-shadow(0 0 20px #fff);
+  }
+  100% {
+    filter: drop-shadow(0 0 5px #fff);
+  }
+}
+
+/* Dark theme glow */
+@media (prefers-color-scheme: dark) {
+  .animated-logo {
+    filter: drop-shadow(0 0 10px #00f0ff);
+  }
+
+  .animated-logo:hover {
+    filter: drop-shadow(0 0 25px #00f0ff);
+  }
+
+  @keyframes glowPulse {
+    0% {
+      filter: drop-shadow(0 0 5px #00f0ff);
+    }
+    50% {
+      filter: drop-shadow(0 0 20px #00f0ff);
+    }
+    100% {
+      filter: drop-shadow(0 0 5px #00f0ff);
+    }
+  }
+}
+
+/* Light theme glow */
+@media (prefers-color-scheme: light) {
+  .animated-logo {
+    filter: drop-shadow(0 0 10px #f5b342);
+  }
+
+  .animated-logo:hover {
+    filter: drop-shadow(0 0 25px #f5b342);
+  }
+
+  @keyframes glowPulse {
+    0% {
+      filter: drop-shadow(0 0 5px #f5b342);
+    }
+    50% {
+      filter: drop-shadow(0 0 20px #f5b342);
+    }
+    100% {
+      filter: drop-shadow(0 0 5px #f5b342);
+    }
+  }
+}
+
+.navigation a{
+   position: relative;
+   font-size: 1.4em;
+   color:#162938;
+   text-decoration: none;
+   font-weight: 650;
+   margin-left: 40px;
+}
+.navigation a:hover {
+  color: #219a06;
+  text-shadow: 0 0 0px #00f0ff, 0 0 2px #00f0ff, 0 0 3px #00f0ff;
+}
+
+.navigation a::after{
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 3px;
+  background: #fff;
+  border-radius: 5px;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform .5s;
+}
+
+.navigation a:hover::after{
+  transform-origin: left;
+  transform: scaleX(1);
+}
+
+#a{
+  margin-left: 10px;
+}
+
+.navigation .btnLogin-popup{
+  width: 130px;
+  height: 50px;
+  background: transparent;
+  border: 2px solid #fff;
+  outline: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.1em;
+  color: #fff;
+  font-weight: 500;
+  margin-left: 40px;
+  transition: .5s;
+}
+
+.navigation .anchor-link{
+ margin-left: 10px;
+}
+
+.navigation .btnLogin-popup:hover{
+  background: #fff;
+  color: #162938;
+}
+
+
+.loginHidden{
+  overflow: hidden;
+  visibility: hidden;
+}
+
+/* .nav__toggle{
+  font-size: 20px;
+  color: var(--title-color);
+  cursor: pointer;
+  transition: color .4s;
+} */
+
+/* :is( .nav__toggle):hover {
+  color: var(--first-color);
+} */
+
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+  }
+
+  .logo img {
+    position: static;
+    height: 100px;
+    width: 110px;
+    margin-bottom: 10px;
+  }
+
+  .navigation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .navigation a {
+    font-size: 1em;
+    margin-left: 0;
+  }
+
+  .navigation .btnLogin-popup {
+    width: 100%;
+    max-width: 200px;
+    margin-left: 0;
+    font-size: 1em;
+  }
+}
+/* 
+@media screen and (min-width: 1023px) { .nav__toggle {
+  display: none;}
+} */
+
+@media (max-width: 480px) {
+  .nav {
+    padding: 5px;
+  }
+
+  .logo img {
+    height: 80px;
+    width: 90px;
+  }
+
+  .navigation a {
+    font-size: 0.9em;
+  }
+
+  .navigation .btnLogin-popup {
+    width: 100%;
+    max-width: 150px;
+    font-size: 0.9em;
+  }
+}  
+
+

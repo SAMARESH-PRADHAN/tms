@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luxury Booking</title>
+    <link rel="stylesheet" href="./assets2/booking.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  </head>
+  <body>
+    <header id="headerHome"></header>
+
+    <div class="booking-wrapper">
+      <div class="booking-container">
+        <h2 class="fade-in">🌟 Book Your Luxury Trip 🌟</h2>
+        <p class="subtitle">Exclusive travel experiences just for you</p>
+        <form id="bookingForm">
+          <div class="input-group">
+            <label for="package_name">Package Name</label>
+            <input type="text" id="package_name" readonly />
+          </div>
+
+          <div class="input-group">
+            <label for="booking_date">Booking Date</label>
+            <input type="date" id="booking_date" readonly />
+          </div>
+
+          <div class="input-group">
+            <label for="travel_date">Travel Date</label>
+            <input type="date" id="travel_date" />
+          </div>
+
+          <div class="input-group">
+            <label for="num_people">Number of People</label>
+            <input type="number" id="num_people" min="0" value="0" />
+          </div>
+
+          <div class="input-group">
+            <label for="price_per_person">Price per Person (₹)</label>
+            <input type="text" id="price_per_person" readonly />
+          </div>
+
+          <div class="input-group">
+            <label for="total_price">Total Price (₹)</label>
+            <input type="text" id="total_price" readonly class="price-effect" />
+          </div>
+
+          <button type="submit" class="glow-button">✨ Confirm Booking</button>
+        </form>
+      </div>
+    </div>
+
+    <footer id="footer" class="ft"></footer>
+    <script src="./assets2/jquery-3.7.1.min.js"></script>
+    <script src="./assets2/booking.js"></script>
+  </body>
+</html>

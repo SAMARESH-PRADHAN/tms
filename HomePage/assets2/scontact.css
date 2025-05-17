@@ -1,0 +1,116 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #e0eafc, #cfdef3);  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+
+#h1 {
+  position: relative;
+  top: 50px;
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+  color: #333;
+  text-shadow: 2px 2px #fff3;
+  animation: fadeInDown 1s ease;
+  text-align: center;
+  /* margin-top: 220px; */
+}
+
+.contact-container {
+  position: relative;
+  top: 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  animation: fadeInUp 1.2s ease;
+}
+
+.contact-card {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.contact-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.contact-card h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #f8b500;
+}
+
+.contact-card p {
+  margin: 8px 0;
+  color: #555;
+}
+
+.read-btn {
+  margin-top: 12px;
+  background-color: #eee;
+  color: #333;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.read-btn:hover {
+  background-color: #ddd;
+}
+
+.read-btn.read {
+  background-color: #28a745 !important;
+  color: white !important;
+  cursor: default;
+}
+
+
+.ft{
+  margin-top: 290px;
+  width: 100%;
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+/* #contactBox{
+  width: 90%;
+} */

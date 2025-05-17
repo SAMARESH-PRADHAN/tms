@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login page</title>
+    <link rel="stylesheet" href="./assets/login.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </head>
+  <header id="header" class="hed"></header>
+  <body>
+    <div id="bdy">
+      <div class="box">
+        <div class="from-box login">
+          <h2>Login</h2>
+          <form action="">
+            <div class="input-box">
+              <span class="icon"><ion-icon name="mail"></ion-icon></span>
+              <input type="email" name="email" id="in-mail" />
+              <label>Email</label>
+            </div>
+            <div class="input-box">
+              <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+              <input type="text" name="password" id="pw" />
+              <label>Password</label>
+            </div>
+            <div class="remember-forgot">
+              <!-- <label><input type="checkbox" />Rember me</label> -->
+              <a href="forgot.html">Forgot password?</a>
+            </div>
+            <button type="submit" class="btn">Login</button>
+            <div class="login-register">
+              <p>
+                Don't have an account?<a
+                  href="registration.html"
+                  class="register-link"
+                  >Register</a
+                >
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="./assets/login.js"></script>
+    <script src="./assets/main.js"></script>
+    <footer id="footer" class="ft"></footer>
+  </body>
+</html>

@@ -1,0 +1,198 @@
+
+
+
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #e4cffb, #e4ebf7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+ 
+}
+
+
+/* Feedback Container - Glassmorphism */
+.feedback-container {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 700px;
+  text-align: center;
+  margin-top: 200px;
+  transition: 0.3s ease-in-out;
+}
+
+.feedback-container:hover {
+  transform: scale(1.05);
+}
+
+/* Header Styling */
+.feedback-container h2 {
+  color: #050505;
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Form Elements */
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  color: rgb(37, 33, 33);
+  font-size: 20px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+/* Input Fields */
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 5px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  background: rgba(142, 139, 139, 0.863);
+  color: #fff;
+  transition: 0.3s;
+}
+
+/* Fix Dropdown Visibility */
+select {
+  appearance: none;
+  background: rgb(255, 255, 255);
+  color: #383131;
+  cursor: pointer;
+}
+
+select option {
+  color: black;
+  font-size: 12px;
+
+  background: white;
+}
+
+/* Improved Placeholder Visibility */
+input::placeholder, textarea::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Focus Effect */
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border: 2px solid #f1c40f;
+  background: rgba(255, 255, 255, 0.5);
+  color: rgb(51, 46, 46);
+}
+
+/* Submit Button */
+.submit-btn {
+  background: linear-gradient(135deg, #f1c40f, #e67e22);
+  color: white;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  transition: 0.3s ease-in-out;
+  margin-top: 15px; /* Ensures proper spacing above the button */
+}
+
+.submit-btn:hover {
+  background: linear-gradient(135deg, #e67e22, #f1c40f);
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Prevent Footer Overlap */
+.feedback-container {
+  margin-bottom: 120px; /* Extra spacing to push content above footer */
+}
+
+.ft{
+  width: 100%;
+  margin-top: 80px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .feedback-container {
+    width: 90%;
+  }
+}
+.rating-group {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin: 30px 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.rating-group label {
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: #333;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.rating-group select {
+  appearance: none;
+  padding: 12px 16px;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  font-size: 1rem;
+  background: linear-gradient(135deg, #fff, #f9f9f9);
+  color: #333;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  outline: none;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.rating-group select:focus {
+  border-color: #f04e30;
+  box-shadow: 0 0 10px rgba(240, 78, 48, 0.3);
+  background: linear-gradient(135deg, #fff, #f0e7e6);
+}
+
+.rating-group select:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.rating-group select {
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

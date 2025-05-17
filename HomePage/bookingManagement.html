@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin - Booking Details</title>
+
+    <!-- CDN Styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background: linear-gradient(120deg, #f0f4f8, #e3ecf3);
+        padding: 2rem;
+        margin: 0;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        color: #2b2d42;
+        animation: fadeInDown 1s ease-in-out;
+      }
+
+      .actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1.5rem;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        padding: 1rem 1.5rem;
+        border-radius: 20px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        animation: bounceIn 0.6s ease forwards;
+        transform: translateY(-20px);
+        opacity: 0;
+        margin-bottom: 1.5rem;
+      }
+
+      .actions input[type="text"] {
+        padding: 0.6rem 1rem 0.6rem 2.5rem;
+        border: none;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        outline: none;
+        width: 140px;
+        background: rgba(255, 255, 255, 0.9);
+        color: #333;
+        position: relative;
+        box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+      }
+
+      .actions input[type="text"]:hover {
+        background: #f3f3f3;
+      }
+
+      .actions button {
+        padding: 0.6rem 1.2rem;
+        background: linear-gradient(to right, #6a11cb, #2575fc);
+        border: none;
+        color: white;
+        border-radius: 30px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.9rem;
+        box-shadow: 0 6px 15px rgba(39, 94, 254, 0.3);
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .actions button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(39, 94, 254, 0.4);
+      }
+
+      .actions div {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      @keyframes bounceIn {
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      /* Optional: calendar icon with input */
+      .actions input[type="text"]::before {
+        content: "";
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        justify-content: center;
+        transition: opacity 0.3s ease-in-out;
+      }
+
+      .card {
+        background: linear-gradient(145deg, #ffffff, #f0f0f0);
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        padding: 1.8rem;
+        width: 330px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        animation: fadeInUp 0.6s ease forwards;
+        transform: translateY(20px);
+        opacity: 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card:hover {
+        transform: scale(1.02);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2);
+      }
+
+      .card h3 {
+        margin: 0 0 0.5rem;
+        font-size: 1.3rem;
+        color: #007bff;
+        font-weight: 600;
+      }
+
+      .card p {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.95rem;
+        margin: 4px 0;
+      }
+      @keyframes slideUp {
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      .card-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1rem;
+        gap: 1rem;
+      }
+
+      .btn {
+        padding: 0.4rem 1rem;
+        background: linear-gradient(to right, #6a11cb, #2575fc);
+        color: white;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: transform 0.2s ease;
+      }
+
+      .btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 5px 10px rgba(39, 94, 254, 0.4);
+      }
+      @keyframes fadeInUp {
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      /* Pagination Style */
+      .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 2rem;
+      }
+
+      .pagination button {
+        padding: 0.5rem 1rem;
+        margin: 0 0.25rem;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background 0.3s ease;
+      }
+
+      .pagination button:hover {
+        background-color: #0056b3;
+      }
+
+      .pagination .active {
+        background-color: #0056b3;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 500px) {
+        .card {
+          width: 90%;
+        }
+      }
+      .badge {
+        display: inline-block;
+        font-size: 0.75rem;
+        padding: 0.2rem 0.6rem;
+        border-radius: 12px;
+        background: linear-gradient(to right, #43e97b, #38f9d7);
+        color: #fff;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Booking Details</h1>
+
+    <div class="actions">
+      <div>
+        <div style="position: relative">
+          <i
+            data-lucide="calendar"
+            style="
+              position: absolute;
+              left: 10px;
+              top: 50%;
+              transform: translateY(-50%);
+              color: #777;
+            "
+          ></i>
+          <input type="text" id="startDate" placeholder="Start Date" />
+        </div>
+        <div style="position: relative">
+          <i
+            data-lucide="calendar"
+            style="
+              position: absolute;
+              left: 10px;
+              top: 50%;
+              transform: translateY(-50%);
+              color: #777;
+            "
+          ></i>
+          <input type="text" id="endDate" placeholder="End Date" />
+        </div>
+        <button id="filterDateBtn"><i data-lucide="filter"></i> Filter</button>
+      </div>
+      <button id="downloadCSV">
+        <i data-lucide="download"></i> Download CSV
+      </button>
+    </div>
+
+    <div class="card-container" id="bookingCards">
+      <!-- Cards will be loaded here -->
+    </div>
+
+    <div class="pagination" id="pagination">
+      <!-- Pagination buttons will be added here -->
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        const itemsPerPage = 5;
+        let currentPage = 1;
+        let filteredBookings = [];
+
+        loadBookings();
+
+        function loadBookings() {
+          $.get("http://127.0.0.1:5000/admin/bookingss", function (data) {
+            filteredBookings = data.data; // Store original bookings for pagination and filtering
+            renderBookings();
+          });
+        }
+
+        function renderBookings() {
+          const startIndex = (currentPage - 1) * itemsPerPage;
+          const endIndex = currentPage * itemsPerPage;
+          const bookingsToShow = filteredBookings.slice(startIndex, endIndex);
+
+          let html = "";
+          bookingsToShow.forEach((b) => {
+            html += `
+              <div class="card">
+                <h3>Booking #${b.booking_id}</h3>
+                <p><b>Booking Date:</b> ${b.booking_date}</p>
+                <p><b>Travel Date:</b> ${b.travel_date}</p>
+                <p><b>People:</b> ${b.num_people}</p>
+                <p><b>Total:</b> ₹${b.total_price}</p>
+                <div class="card-buttons">
+                  <button class="btn" onclick='showUser(${JSON.stringify(
+                    b.user_info
+                  )})'>User</button>
+                  <button class="btn" onclick='showPackage(${JSON.stringify(
+                    b.package_info
+                  )})'>Package</button>
+                </div>
+              </div>
+            `;
+          });
+
+          $("#bookingCards").html(html);
+          renderPagination();
+        }
+
+        function renderPagination() {
+          const totalPages = Math.ceil(filteredBookings.length / itemsPerPage);
+          let paginationHtml = "";
+          for (let i = 1; i <= totalPages; i++) {
+            paginationHtml += `
+              <button class="pagination-btn ${
+                i === currentPage ? "active" : ""
+              }" data-page="${i}">${i}</button>
+            `;
+          }
+          $("#pagination").html(paginationHtml);
+        }
+
+        $(document).on("click", ".pagination-btn", function () {
+          currentPage = $(this).data("page");
+          renderBookings();
+        });
+
+        window.showUser = function (user) {
+          Swal.fire({
+            title: `<strong>User Info</strong>`,
+            html: `
+            <p><b>Name:</b> ${user.user_name}</p>
+            <p><b>Email:</b> ${user.email}</p>
+            <p><b>Mobile:</b> ${user.mobile}</p>
+            <p><b>Address:</b> ${user.address}</p>
+          `,
+            icon: "info",
+            confirmButtonText: "Close",
+          });
+        };
+
+        window.showPackage = function (pkg) {
+          Swal.fire({
+            title: `<strong>Package Info</strong>`,
+            html: `
+            <p><b>Name:</b> ${pkg.package_name}</p>
+            <p><b>Description:</b> ${pkg.description}</p>
+            <p><b>Price:</b> ₹${pkg.price}</p>
+            <p><b>Duration:</b> ${pkg.duration} days</p>
+          `,
+            imageUrl: `../image/${pkg.image}`,
+            imageHeight: 150,
+            confirmButtonText: "Close",
+          });
+        };
+
+        // Date pickers
+        flatpickr("#startDate", { dateFormat: "Y-m-d" });
+        flatpickr("#endDate", { dateFormat: "Y-m-d" });
+
+        // Filter by date
+        $("#filterDateBtn").on("click", function () {
+          const start = $("#startDate").val();
+          const end = $("#endDate").val();
+          if (!start || !end) {
+            Swal.fire("Please select both start and end dates");
+            return;
+          }
+
+          filteredBookings = filteredBookings.filter((b) => {
+            const bookingDate = new Date(b.booking_date);
+            return (
+              bookingDate >= new Date(start) && bookingDate <= new Date(end)
+            );
+          });
+
+          currentPage = 1; // Reset to first page after filtering
+          renderBookings();
+        });
+
+        // Download CSV button
+        $("#downloadCSV").on("click", function () {
+          const downloadData = filteredBookings.length
+            ? filteredBookings
+            : allBookings;
+          let csvContent =
+            "Booking ID,Booking Date,Travel Date,People,Total,User Name,Email,Mobile,Package Name,Package Price\n";
+
+          downloadData.forEach((b) => {
+            csvContent += `${b.booking_id},${b.booking_date},${b.travel_date},${b.num_people},₹${b.total_price},${b.user_info.user_name},${b.user_info.email},${b.user_info.mobile},${b.package_info.package_name},₹${b.package_info.price}\n`;
+          });
+
+          const link = document.createElement("a");
+          link.href =
+            "data:text/csv;charset=utf-8," + encodeURIComponent(csvContent);
+          link.download = "filtered_bookings.csv";
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        });
+        loadBookings();
+
+        lucide.createIcons();
+      });
+      lucide.createIcons();
+    </script>
+  </body>
+</html>

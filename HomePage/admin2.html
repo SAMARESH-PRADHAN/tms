@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="assets2/admin2.css" />
+  </head>
+  <body>
+    <header id="headerHome"></header>
+
+    <main id="mnn">
+      <div id="heading">
+        <span class="menuToggle">&#9776;</span>
+        <h2>Admin Dashboard</h2>
+      </div>
+
+      <div id="container">
+        <nav class="sidebar" id="sidebar">
+          <a href="#" class="menu-link active" data-page="dashboard"
+            >Dashboard</a
+          >
+          <a href="#" class="menu-link" data-page="userdetail.html"
+            >User Management</a
+          >
+          <a href="#" class="menu-link" data-page="managepackage.html"
+            >Manage Packages</a
+          >
+          <a href="#" class="menu-link" data-page="managedestination.html"
+            >Manage Destination</a
+          >
+          <a href="#" class="menu-link" data-page="bookingManagement.html"
+            >Booking Management</a
+          >
+          <a href="#" class="menu-link" data-page="scontact.html"
+            >Manage Contacts</a
+          >
+          <a href="#" class="menu-link" data-page="sfeedback.html">Feedback</a>
+        </nav>
+
+        <div class="content" id="main-content">
+          <!-- Content loads here -->
+        </div>
+      </div>
+    </main>
+    <!-- Loading Spinner -->
+    <div id="loader-wrapper">
+      <div class="spinner"></div>
+    </div>
+
+    <footer id="footer"></footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#headerHome").load("nav.html");
+        $("#footer").load("footer.html");
+        $("#header").css("background", "none");
+        loadDashboard();
+
+        $(".menuToggle").click(function () {
+          $("#sidebar").toggleClass("show");
+          $(".content").toggleClass("show");
+        });
+
+        $(".menu-link").click(function (e) {
+          e.preventDefault();
+          $(".menu-link").removeClass("active");
+          $(this).addClass("active");
+
+          const page = $(this).data("page");
+          loadPage(page);
+
+          $("#sidebar").removeClass("show");
+          $(".content").removeClass("show");
+
+          $("#main-content").css("opacity", 0);
+          setTimeout(() => {
+            $("#main-content").css("opacity", 1);
+          }, 200);
+        });
+      });
+
+      function animateCounter(el, target) {
+        let count = 0;
+        const step = Math.ceil(target / 100);
+        const interval = setInterval(() => {
+          count += step;
+          if (count >= target) {
+            count = target;
+            clearInterval(interval);
+          }
+          el.text(count);
+        }, 20);
+      }
+
+      function downloadChartImage(chartId) {
+        const chart = Chart.getChart(chartId);
+        const canvas = chart.canvas;
+        const ctx = canvas.getContext("2d");
+
+        // Backup current chart image
+        const baseImage = new Image();
+        baseImage.src = canvas.toDataURL("image/png");
+
+        baseImage.onload = () => {
+          // Draw base chart on a new temporary canvas
+          const tempCanvas = document.createElement("canvas");
+          tempCanvas.width = canvas.width;
+          tempCanvas.height = canvas.height;
+          const tempCtx = tempCanvas.getContext("2d");
+
+          // Draw the chart image
+          tempCtx.drawImage(baseImage, 0, 0);
+
+          // Add chart data as text
+          const data = chart.data.datasets[0].data;
+          const labels = chart.data.labels;
+
+          tempCtx.font = "18px Arial";
+          tempCtx.fillStyle = "#9c27b0";
+          tempCtx.textAlign = "left";
+
+          labels.forEach((label, i) => {
+            const value = data[i];
+            const percent = (
+              (value / data.reduce((a, b) => a + b, 0)) *
+              100
+            ).toFixed(1);
+            tempCtx.fillText(
+              `${label}: ${value} (${percent}%)`,
+              20,
+              canvas.height - labels.length * 20 + i * 20 - 10
+            );
+          });
+
+          // Download the image with data
+          const finalImage = tempCanvas.toDataURL("image/png");
+          const link = document.createElement("a");
+          link.href = finalImage;
+          link.download = `${chartId}_with_data.png`;
+          link.click();
+        };
+      }
+
+      function downloadCSV(data, filename) {
+        const csv = data.map((row) => row.join(",")).join("\n");
+        const blob = new Blob([csv], { type: "text/csv" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        a.click();
+        URL.revokeObjectURL(url);
+      }
+
+      function loadDashboard() {
+        $("#main-content").html(`
+          <div class="dashboard">
+            <div class="card"><h3>Total Users</h3><div class="count" id="userCount">0</div></div>
+            <div class="card"><h3>Total Packages</h3><div class="count" id="packageCount">0</div></div>
+            <div class="card"><h3>Total Destinations</h3><div class="count" id="destinationCount">0</div></div>
+            <div class="card"><h3>Total Bookings</h3><div class="count" id="bookingCount">0</div></div>
+          </div>
+    
+          <!-- Feedback Chart -->
+          <div class="chart-row">
+          <div class="chart-container">
+            <h3>Feedback Rating Distribution</h3>
+            <div class="chart-tools">
+              <button onclick="downloadChartImage('feedbackChart')">Download Image</button>
+            </div>
+            <canvas id="feedbackChart"></canvas>
+          </div>
+    
+          <!-- User Registration Chart -->
+          <div class="chart-container">
+            <h3>User Registrations Over Time</h3>
+            <div class="chart-tools">
+              <input type="date" id="startDate" />
+              <input type="date" id="endDate" />
+              <button onclick="loadUserChart()">Apply Filter</button>
+              <button onclick="downloadChartImage('userChart')">Download Image</button>
+              <button id="downloadUserCSV">Download CSV</button>
+            </div>
+            <canvas id="userChart"></canvas>
+          </div>
+          </div>
+        `);
+
+        $.ajax({
+          url: "http://127.0.0.1:5000/admin/stats",
+          method: "GET",
+          dataType: "json",
+          success: function (data) {
+            animateCounter($("#userCount"), data.total_users);
+            animateCounter($("#packageCount"), data.total_packages);
+            animateCounter($("#destinationCount"), data.total_destinations);
+            animateCounter($("#bookingCount"), data.total_booking);
+          },
+          error: function (xhr, status, error) {
+            console.error("Failed to load dashboard stats:", error);
+            $("#main-content").append(
+              `<p style="color:red;">Failed to load dashboard data.</p>`
+            );
+          },
+        });
+
+        loadUserChart();
+        loadFeedbackChart();
+      }
+
+      function loadUserChart() {
+        const start = $("#startDate").val();
+        const end = $("#endDate").val();
+
+        $.ajax({
+          url: "http://127.0.0.1:5000/admin/user_registrations",
+          method: "GET",
+          data: { start, end },
+          dataType: "json",
+          success: function (data) {
+            const ctx = document.getElementById("userChart").getContext("2d");
+            if (window.userChartInstance) window.userChartInstance.destroy();
+
+            window.userChartInstance = new Chart(ctx, {
+              type: "line",
+              data: {
+                labels: data.dates,
+                datasets: [
+                  {
+                    label: "Registrations",
+                    data: data.counts,
+                    backgroundColor: "#2196f3aa",
+                    borderColor: "#2196f3",
+                    borderWidth: 2,
+                    fill: true,
+                  },
+                ],
+              },
+              options: {
+                responsive: true,
+                scales: {
+                  y: { beginAtZero: true },
+                },
+              },
+            });
+
+            const csvData = [["Date", "Registrations"]];
+            data.dates.forEach((date, i) => {
+              csvData.push([date, data.counts[i]]);
+            });
+
+            $("#downloadUserCSV")
+              .off("click")
+              .on("click", function () {
+                downloadCSV(csvData, "user_registrations.csv");
+              });
+          },
+        });
+      }
+
+      function loadFeedbackChart() {
+        $.ajax({
+          url: "http://127.0.0.1:5000/admin/feedback_ratings",
+          method: "GET",
+          dataType: "json",
+          success: function (data) {
+            const ctx = document
+              .getElementById("feedbackChart")
+              .getContext("2d");
+            if (window.feedbackChartInstance)
+              window.feedbackChartInstance.destroy();
+
+            window.feedbackChartInstance = new Chart(ctx, {
+              type: "pie",
+              data: {
+                labels: data.labels,
+                datasets: [
+                  {
+                    label: "Ratings",
+                    data: data.counts,
+                    backgroundColor: [
+                      "#4caf50",
+                      "#2196f3",
+                      "#ff9800",
+                      "#f44336",
+                      "#9c27b0",
+                    ],
+                    borderWidth: 1,
+                  },
+                ],
+              },
+              options: {
+                responsive: true,
+              },
+            });
+          },
+        });
+      }
+
+      function loadPage(page) {
+        $("#loader-wrapper").fadeIn(200);
+        if (page === "dashboard") {
+          setTimeout(() => {
+            loadDashboard();
+            $("#loader-wrapper").fadeOut(300);
+          }, 500);
+        } else {
+          setTimeout(() => {
+            $("#main-content").html(`<iframe src="${page}"></iframe>`);
+            $("#loader-wrapper").fadeOut(300);
+          }, 500);
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Destination Management</title>
+    <link rel="stylesheet" href="./assets2/managedestination.css" />
+  </head>
+  <body>
+    <!-- <header id="headerHome"></header> -->
+
+    <div id="container">
+      <h2>Destination Management</h2>
+
+      <!-- Add destination form -->
+      <form id="destinationForm">
+        <div class="form-group">
+          <label>Destination Name</label>
+          <input type="text" id="destinationName" />
+        </div>
+        <div class="form-group">
+          <label>Longitude</label>
+          <input type="numeric" id="Longitude" />
+        </div>
+        <div class="form-group">
+          <label>Latitude</label>
+          <input type="numeric" id="Latitude" />
+        </div>
+        <button type="submit" class="btn btn-add">Add Destination</button>
+      </form>
+
+      <!-- Destination Table -->
+      <table>
+        <thead>
+          <tr>
+            <th>Destination Id</th>
+            <th>Destination Name</th>
+            <th>Longitude</th>
+            <th>Latitude</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="destinationTable"></tbody>
+      </table>
+
+      <div id="editDestinationModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h3>Edit User</h3>
+          <form id="editDestinationForm" class="editDestinationForm">
+            <input type="hidden" id="editDestination_id" />
+            <label>Destination Name</label>
+            <input type="text" id="editDestination_name" />
+            <label>Longitude</label>
+            <input type="number" id="editLongitude" />
+            <label>Latitude</label>
+            <input type="number" id="editLatitude" />
+            <button type="submit">Update</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- <footer id="footer" class="ft"></footer> -->
+    <script src="./assets2/jquery-3.7.1.min.js"></script>
+    <script src="./assets2/managedestination.js"></script>
+  </body>
+</html>

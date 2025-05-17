@@ -1,0 +1,249 @@
+
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+
+/* Navigation Bar */
+#nv {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100px;
+  width: 100%;
+  padding: 20px 30px;
+  background: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  z-index: 1000;
+  backdrop-filter: blur(100px);
+}
+
+/* Logo */
+/* #lg img{
+  position: fixed;
+  height: 140px;
+  width: 150px;
+}
+
+#lg{
+  height: 50px;
+  margin-bottom: 20px;
+} */
+
+/* Desktop Navigation */
+#nLink {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  gap: 40px;
+
+}
+
+/* Base styles for nav links */
+#nLink a {
+  position: relative;
+  font-size: 1.2em;
+  color: #55c803;
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 10px;
+  padding: 5px 8px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+/* Modern underline effect on hover */
+#nLink a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 100%;
+  background-color: #f04e30;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s ease;
+  border-radius: 4px;
+}
+
+#nLink a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Text color and glow on hover */
+#nLink a:hover {
+  color: #f04e30;
+  text-shadow: 0 0 5px #f04e30, 0 0 10px #f04e30;
+  transform: translateY(-2px);
+}
+
+/* Pulse effect on hover */
+@keyframes pulseLink {
+  0% {
+    text-shadow: 0 0 5px #f04e30;
+  }
+  50% {
+    text-shadow: 0 0 15px #f04e30;
+  }
+  100% {
+    text-shadow: 0 0 5px #f04e30;
+  }
+}
+
+#nLink a:hover {
+  animation: pulseLink 1s ease-in-out infinite;
+}
+
+
+/* Login Button */
+#loginBtn {
+  width: 130px;
+  height: 40px;
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.1em;
+  color:#55c803;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+#loginBtn:hover {
+  background: #fff;
+  color: #f04e30;
+}
+
+/* Menu Toggle Button (Hamburger) */
+#mToggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #0f0e0e;
+  cursor: pointer;
+}
+
+.admin_profile{
+  font-size: 30px;
+  margin-right: 50px;
+  
+}
+
+.adminHidden{
+  overflow: hidden;
+  visibility: hidden;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  #mToggle {
+    display: block;
+  }
+
+  #nLinks {
+    display: none; /* Hide initially */
+    flex-direction: column;
+    position: absolute;
+    top: 80px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.9);
+    width: 200px;
+    text-align: center;
+    border-radius: 8px;
+    padding: 10px;
+  }
+
+  #nLinks a {
+    display: block;
+    padding: 10px;
+    color: white;
+  }
+
+  #nLinks .btnLogin-popup {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  /* Class to show navigation */
+  #nLinks.active {
+    display: flex;
+  }
+}
+
+
+
+
+/* Updated Logo Container */
+#lg {
+  height: 50px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: float 4s ease-in-out infinite;
+  margin-top: 40px;
+}
+
+/* Logo Image with animation and styling */
+#lg img {
+  height: 140px;
+  width: 150px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: drop-shadow(0 0 50px rgba(115, 232, 32, 0.786));
+  animation: pulseGlow 3s infinite alternate;
+  border-radius: 12px;
+}
+
+/* Hover effect on logo */
+#lg img:hover {
+  transform: scale(1.05) rotate(1deg);
+  filter: drop-shadow(0 0 20px rgba(240, 78, 48, 0.6));
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* Pulse glow animation */
+@keyframes pulseGlow {
+  0% {
+    filter: drop-shadow(0 0 8px rgba(115, 231, 33, 0.841));
+  }
+  100% {
+    filter: drop-shadow(0 0 28px rgba(122, 242, 37, 0.9));
+  }
+}
+
+/* Adaptive styles for dark/light theme */
+@media (prefers-color-scheme: dark) {
+  #lg img {
+    filter: drop-shadow(0 0 12px rgba(134, 244, 56, 0.778));
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  #lg img {
+    filter: drop-shadow(0 0 12px rgba(240, 78, 48, 0.6));
+  }
+}
+#nLink a:hover {
+  color: #00ffe7;
+  text-shadow:
+    0 0 5px #00ffe7,
+    0 0 10px #00ffe7,
+    0 0 20px #00ffe7,
+    0 0 40px #00ffe7;
+}

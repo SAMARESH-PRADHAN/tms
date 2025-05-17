@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manage Users</title>
+    <!-- <link rel="stylesheet" href="./assets/admin.css" /> -->
+    <link rel="stylesheet" href="./assets2/userdetail.css" />
+  </head>
+  <body>
+    <!-- <header id="headerHome"></header> -->
+
+    <div id="container">
+      <h2>User Management</h2>
+
+      <!-- 📌 Add User Form -->
+      <form id="addUserForm" class="user-form">
+        <input type="text" id="userName" placeholder="User Name" />
+        <input type="email" id="userEmail" placeholder="Email" />
+        <input type="text" id="userMobile" placeholder="Mobile" />
+        <input type="text" id="userAddress" placeholder="Address" />
+        <input
+          type="password"
+          id="userPassword"
+          placeholder="Password"
+          required
+        />
+        <button type="submit" class="btn add-btn">Add User</button>
+      </form>
+
+      <!-- 📌 Delete All Users Button
+      <button id="deleteAllBtn" class="btn delete-all-btn">Delete Users</button> -->
+
+      <!-- 📌 User Table -->
+      <table id="userTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <!-- 📌 Edit User Modal -->
+      <div id="editUserModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h3>Edit User</h3>
+          <form id="editUserForm">
+            <input type="hidden" id="editUserId" />
+            <input type="text" id="editUserName" />
+            <input type="email" id="editUserEmail" />
+            <button type="submit" class="btn edit-save-btn">Update</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- <footer id="footer" class="ft"></footer> -->
+    <script src="./assets2/jquery-3.7.1.min.js"></script>
+    <script src="./assets2/userdetail.js"></script>
+    <script src="./assets2/userdetail.css"></script>
+  </body>
+</html>
