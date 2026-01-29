@@ -578,3 +578,17 @@ section{
   background: #f97316;
   transform: scale(1.2);
 }
+.avatar {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, #ff7a18, #ffb347);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 22px;
+  margin: 0 auto 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,.2);
+}
