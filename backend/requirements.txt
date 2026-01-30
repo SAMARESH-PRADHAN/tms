@@ -5,3 +5,4 @@ SQLAlchemy
 python-dotenv
 flask-cors
 Flask-SQLAlchemy==3.0.4
+bcrypt==4.1.0
