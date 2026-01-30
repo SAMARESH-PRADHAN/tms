@@ -6,12 +6,13 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-  const apiBaseUrl = "http://127.0.0.1:5000/packages"; // API Endpoint
-  const uploadBaseUrl = "http://127.0.0.1:5000/uploads"; //Image Folder
+  const apiBaseUrl = "https://tms-backend-kfut.onrender.com/packages"; // API Endpoint
+  const uploadBaseUrl = "https://tms-backend-kfut.onrender.com/uploads"; //Image Folder
 
   function loadDestinations() {
+   const API_BASE = "https://tms-backend-kfut.onrender.com"; // Render backend URL
     $.ajax({
-      url: "http://127.0.0.1:5000/destinationsP", // Fetch destinations
+      url: `${API_BASE}/destinationsP`, // Fetch destinations
       type: "GET",
       success: function (data) {
         let options = '<option value="">Select Destination</option>';
@@ -188,7 +189,7 @@ $(document).ready(function () {
     }
 
     $.ajax({
-      url: `http://127.0.0.1:5000/packages/${package_id}`,
+      url: `https://tms-backend-kfut.onrender.com/packages/${package_id}`,
       type: "PUT",
       data: formData,
       processData: false,
@@ -199,7 +200,7 @@ $(document).ready(function () {
         if (response.image) {
           $("#currentPackageImage").attr(
             "src",
-            `http://127.0.0.1:5000/static/uploads/${response.image}`
+            `https://tms-backend-kfut.onrender.com/static/uploads/${response.image}`
           );
         }
 

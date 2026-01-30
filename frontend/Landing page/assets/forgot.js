@@ -27,7 +27,7 @@ function requestOTP() {
     swal("Error!", "Please enter your email.", "error");
     return;
   }
-const API_BASE = "https://tms-backend.onrender.com"; // Render backend URL
+  const API_BASE = "https://tms-backend-kfut.onrender.com"; // Render backend URL
 
   $.ajax({
     url: `${API_BASE}/forgot-password`,

@@ -82,7 +82,7 @@ $(document).ready(function () {
         swal("Error!", "Please enter both email and password.", "warning");
         return;
       }
-const API_BASE = "https://tms-backend.onrender.com"; // Render backend URL
+      const API_BASE = "https://tms-backend-kfut.onrender.com"; // Render backend URL
 
       $.ajax({
         url: `${API_BASE}/login`, // Adjust based on your Flask server URL
@@ -106,7 +106,7 @@ const API_BASE = "https://tms-backend.onrender.com"; // Render backend URL
             if (response.message === "Login Successful") {
               localStorage.setItem(
                 "user_details",
-                JSON.stringify(response.user_details)
+                JSON.stringify(response.user_details),
               );
               window.location.href = "../HomePage/index.html";
             }
@@ -117,7 +117,7 @@ const API_BASE = "https://tms-backend.onrender.com"; // Render backend URL
             swal(
               "Error!",
               "Your account is deactivated. Contact support.",
-              "error"
+              "error",
             );
           } else if (xhr.status === 401) {
             swal("Error!", "Invalid email or password.", "error");
@@ -125,7 +125,7 @@ const API_BASE = "https://tms-backend.onrender.com"; // Render backend URL
             swal(
               "Error!",
               "An unexpected error occurred. Please try again later.",
-              "error"
+              "error",
             );
           }
         },

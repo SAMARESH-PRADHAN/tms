@@ -149,7 +149,7 @@ let destinationLayer; // global variable
 let destinationsVisible = false;
 
 // Load destinations from API
-fetch("http://127.0.0.1:5000/destinationss")
+fetch("https://tms-backend-kfut.onrender.com/destinationss")
   .then((response) => response.json())
   .then((data) => {
     if (!data.data || !Array.isArray(data.data)) {
@@ -189,7 +189,7 @@ fetch("http://127.0.0.1:5000/destinationss")
         var placeName = feature.get("name");
         var packageCount = feature.get("package_count");
 
-        fetch(`http://127.0.0.1:5000/packagess/${destinationId}`)
+        fetch(`https://tms-backend-kfut.onrender.com/packagess/${destinationId}`)
           .then((response) => response.json())
           .then((data) => {
             if (!data.data || !Array.isArray(data.data)) {

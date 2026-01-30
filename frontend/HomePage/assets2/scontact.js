@@ -8,7 +8,7 @@ $(document).ready(function () {
 $(document).ready(function () {
   function loadContacts() {
     $.ajax({
-      url: "http://127.0.0.1:5000/admin/contacts",
+      url: "https://tms-backend-kfut.onrender.com/admin/contacts",
       method: "GET",
       success: function (data) {
         let html = "";
@@ -54,7 +54,7 @@ $(document).ready(function () {
     }
 
     $.ajax({
-      url: `http://127.0.0.1:5000/admin/contact/read/${contactId}`,
+      url: `https://tms-backend-kfut.onrender.com/admin/contact/read/${contactId}`,
       method: "POST",
       success: function () {
         button.addClass("read").text("Read").prop("disabled", true);
