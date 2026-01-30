@@ -35,10 +35,11 @@ $(document).ready(function () {
     setTimeout(() => (window.location.href = "index.html"), 2000);
     return;
   }
+const API_BASE = "https://tms-backend-kfut.onrender.com"; // Render backend URL
 
   // Fetch package details based on package ID
   $.ajax({
-    url: `http://127.0.0.1:5000/packagesss/${packageId}`, // Ensure this route matches the backend
+    url: `${API_BASE}/packagesss/${packageId}`, // Ensure this route matches the backend
     type: "GET",
     success: function (response) {
       if (response.success) {
@@ -96,9 +97,10 @@ $(document).ready(function () {
       user_id: currentUser,
     };
     console.log(bookingData);
+const API_BASE = "https://tms-backend-kfut.onrender.com"; // Render backend URL
 
     $.ajax({
-      url: "http://127.0.0.1:5000/book",
+      url: `${API_BASE}/book`,
       type: "POST",
       contentType: "application/json",
       data: JSON.stringify(bookingData),

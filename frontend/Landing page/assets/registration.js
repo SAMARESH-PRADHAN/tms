@@ -1,21 +1,3 @@
-// $(document).ready(function () {
-//   // Load the header dynamically
-//   $("#header").load("./header.html", function (response, status, xhr) {
-//     if (status === "error") {
-//       console.error(
-//         "Error loading header: " + xhr.status + " " + xhr.statusText
-//       );
-//     }
-//   });
-//   // Load the footer dynamically
-//   $("#footer").load("./footer.html", function (response, status, xhr) {
-//     if (status === "error") {
-//       console.error(
-//         "Error loading header: " + xhr.status + " " + xhr.statusText
-//       );
-//     }
-//   });
-// });
 
 $(document).ready(function () {
   // Load header and footer
@@ -127,7 +109,8 @@ $(document).ready(function () {
       mobile: mobile,
       address: address,
     };
-const API_BASE = "https://tms-backend.onrender.com"; // Render backend URL
+    
+    const API_BASE = "https://tms-backend-kfut.onrender.com"; // Render backend URL
 
     // AJAX request
     $.ajax({

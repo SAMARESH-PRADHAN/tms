@@ -35,7 +35,7 @@ inputs.forEach((input) => {
   input.addEventListener("focus", focusFunc);
   input.addEventListener("blur", blurFunc);
 });
-const API_BASE = "https://tms-backend.onrender.com"; // Render backend URL
+const API_BASE = "https://tms-backend-kfut.onrender.com"; // Render backend URL
 
 $(document).ready(function () {
   $(".contact-form form").on("submit", function (e) {

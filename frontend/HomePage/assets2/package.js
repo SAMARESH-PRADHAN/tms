@@ -8,7 +8,7 @@ $(document).ready(function () {
 $(document).ready(function () {
   // Fetch packages from the API
   $.ajax({
-    url: "http://127.0.0.1:5000/packages",
+    url: "https://tms-backend-kfut.onrender.com/packages",
     method: "GET",
     dataType: "json",
     success: function (data) {

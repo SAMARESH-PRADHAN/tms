@@ -10,8 +10,9 @@ $(document).ready(function () {
 
   // Fetch all destinations
   function fetchDestinations() {
+    const API_BASE = "https://tms-backend-kfut.onrender.com"; // Render backend URL
     $.ajax({
-      url: "http://127.0.0.1:5000/destinations",
+      url: `${API_BASE}/destinations`,
       type: "GET",
       dataType: "json",
       success: function (data) {
@@ -46,8 +47,9 @@ $(document).ready(function () {
     let longitude = parseFloat($("#Longitude").val());
     let latitude = parseFloat($("#Latitude").val());
 
+    const API_BASE = "https://tms-backend-kfut.onrender.com"; // Render backend URL
     $.ajax({
-      url: "http://127.0.0.1:5000/destinations",
+      url: `${API_BASE}/destinations`,
       type: "POST",
       contentType: "application/json",
       data: JSON.stringify({
@@ -80,8 +82,9 @@ $(document).ready(function () {
     let newLatitude = prompt("Enter new latitude:", latitude);
 
     if (newName && newLongitude && newLatitude) {
+      const API_BASE = "https://tms-backend-kfut.onrender.com"; // Render backend URL
       $.ajax({
-        url: `http://127.0.0.1:5000/destinations/${destination_id}`,
+        url: `${API_BASE}/destinations/${destination_id}`,
         type: "PUT",
         contentType: "application/json",
         data: JSON.stringify({
@@ -108,8 +111,10 @@ $(document).ready(function () {
     let newStatus = !isActive;
     let button = $(this);
 
+    const API_BASE = "https://tms-backend-kfut.onrender.com"; // Render backend URL
+
     $.ajax({
-      url: `http://127.0.0.1:5000/destinations/${destination_id}/toggle`,
+      url: `${API_BASE}/destinations/${destination_id}/toggle`,
       type: "PUT",
       contentType: "application/json",
       data: JSON.stringify({ is_active: newStatus }),

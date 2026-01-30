@@ -30,8 +30,11 @@ $(document).ready(function () {
       comments: comments,
     };
 
+
+    const API_BASE = "https://tms-backend-kfut.onrender.com"; // Render backend URL
+
     $.ajax({
-      url: "http://127.0.0.1:5000/feedback",
+      url: `${API_BASE}/feedback`,
       type: "POST",
       contentType: "application/json",
       data: JSON.stringify(feedbackData),

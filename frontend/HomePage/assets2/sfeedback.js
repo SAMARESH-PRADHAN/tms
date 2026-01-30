@@ -3,7 +3,7 @@ $(document).ready(function () {
 
   function fetchFeedbacks() {
     $.ajax({
-      url: "http://127.0.0.1:5000/admin/feedbacks",
+      url: "https://tms-backend-kfut.onrender.com/admin/feedbacks",
       type: "GET",
       success: function (data) {
         let cards = "";
@@ -37,7 +37,7 @@ $(document).ready(function () {
     const id = $(this).data("id");
     if (confirm("Are you sure you want to delete this feedback?")) {
       $.ajax({
-        url: `http://127.0.0.1:5000/admin/feedbacks/${id}`,
+        url: `https://tms-backend-kfut.onrender.com/admin/feedbacks/${id}`,
         type: "DELETE",
         success: function (res) {
           alert(res.message);

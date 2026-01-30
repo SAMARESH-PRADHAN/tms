@@ -20,10 +20,13 @@ $(document).ready(function () {
   });
 });
 
+
 $(document).ready(function () {
   // Fetch packages from the API
+  const API_BASE = "https://tms-backend-kfut.onrender.com"; // Render backend URL
+
   $.ajax({
-    url: "http://127.0.0.1:5000/packages",
+    url: `${API_BASE}/packages`,
     method: "GET",
     dataType: "json",
     success: function (data) {
