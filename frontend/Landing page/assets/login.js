@@ -82,9 +82,10 @@ $(document).ready(function () {
         swal("Error!", "Please enter both email and password.", "warning");
         return;
       }
+const API_BASE = "https://tms-backend.onrender.com"; // Render backend URL
 
       $.ajax({
-        url: "http://127.0.0.1:5000/login", // Adjust based on your Flask server URL
+        url: `${API_BASE}/login`, // Adjust based on your Flask server URL
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({
