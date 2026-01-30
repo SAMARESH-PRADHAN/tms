@@ -1,8 +1,12 @@
 from flask import Flask
 from flask_cors import CORS
+from dbconfig import init_db
 
 app = Flask(__name__)
 CORS(app)
+
+# ✅ initialize database (Supabase)
+init_db(app)
 
 from app.route import login_route
 from app.route import registration_route

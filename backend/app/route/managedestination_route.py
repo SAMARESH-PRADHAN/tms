@@ -7,7 +7,7 @@ from dbconfig import db
 @app.route('/destinations', methods=['GET'])
 def get_destinations():
     try:
-        sql = text("SELECT destination_id, destination_name, longitude, latitude, is_active FROM tms_oltp.destination_m")
+        sql = text("SELECT destination_id, destination_name, longitude, latitude, is_active FROM public.destination_m")
         result = db.session.execute(sql)
         destinations = [{
             'destination_id': row.destination_id,
@@ -26,7 +26,7 @@ def add_destination():
     data = request.json
     print("Received Data:", data)
     sql = text("""
-        INSERT INTO tms_oltp.destination_m (destination_name, longitude, latitude, is_active)
+        INSERT INTO public.destination_m (destination_name, longitude, latitude, is_active)
         VALUES (:destination_name, :longitude, :latitude, :is_active)
         RETURNING destination_id
     """)
@@ -50,7 +50,7 @@ def add_destination():
 def update_destination(destination_id):
     data = request.json
     sql = text("""
-        UPDATE tms_oltp.destination_m SET
+        UPDATE public.destination_m SET
         destination_name = :destination_name,
         longitude = :longitude,
         latitude = :latitude
@@ -78,7 +78,7 @@ def toggle_active_status(destination_id):
     data = request.json
     is_active = data.get('is_active')
     sql = text("""
-        UPDATE tms_oltp.destination_m
+        UPDATE public.destination_m
         SET is_active = :is_active
         WHERE destination_id = :destination_id
     """)
@@ -93,7 +93,7 @@ def toggle_active_status(destination_id):
 # Delete a Destination
 # @app.route('/destinations/<int:destination_id>', methods=['DELETE'])
 # def delete_destination(destination_id):
-#     sql = text("DELETE FROM tms_oltp.destination_m WHERE destination_id = :destination_id")
+#     sql = text("DELETE FROM public.destination_m WHERE destination_id = :destination_id")
 #     try:
 #         result = db.session.execute(sql, {'destination_id': destination_id})
 #         if result.rowcount == 0:

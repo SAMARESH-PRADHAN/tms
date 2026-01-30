@@ -9,7 +9,7 @@ from datetime import datetime
 @app.route('/admin/contacts', methods=['GET'])
 def get_contacts():
     try:
-        query = text("""SELECT contact_id, name, email, phone, message, created_on, is_read FROM tms_oltp.contact_m WHERE is_active = true ORDER BY created_on DESC""")
+        query = text("""SELECT contact_id, name, email, phone, message, created_on, is_read FROM public.contact_m WHERE is_active = true ORDER BY created_on DESC""")
 
         result = db.session.execute(query)
         contacts = []
@@ -38,7 +38,7 @@ def get_contacts():
 def mark_as_read(contact_id):
     try:
         query = text("""
-            UPDATE tms_oltp.contact_m
+            UPDATE public.contact_m
             SET is_read = true, updated_on = now()
             WHERE contact_id = :contact_id
         """)

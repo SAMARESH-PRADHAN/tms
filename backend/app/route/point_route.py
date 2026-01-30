@@ -9,8 +9,8 @@ def get_destinationss():
     query = text("""
         SELECT d.destination_id, d.destination_name, d.longitude, d.latitude, 
                COUNT(t.package_id) AS package_count
-        FROM tms_oltp.destination_m d
-        LEFT JOIN tms_oltp.tour_package_m t ON d.destination_id = t.destination_id
+        FROM public.destination_m d
+        LEFT JOIN public.tour_package_m t ON d.destination_id = t.destination_id
         WHERE d.is_active = true
         GROUP BY d.destination_id, d.destination_name, d.longitude, d.latitude
     """)
@@ -35,7 +35,7 @@ def get_destinationss():
 def get_packagess(destination_id):
     query = text("""
         SELECT package_id, package_name, description, price, duration, image  
-        FROM tms_oltp.tour_package_m
+        FROM public.tour_package_m
         WHERE destination_id = :destination_id AND availability_status = true
     """)
 

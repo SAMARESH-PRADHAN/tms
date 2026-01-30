@@ -23,7 +23,7 @@ def create_booking():
 
     try:
         insert_query = text("""
-            INSERT INTO tms_oltp.booking_m (booking_date, travel_date, num_people, total_price, user_id, package_id)
+            INSERT INTO public.booking_m (booking_date, travel_date, num_people, total_price, user_id, package_id)
             VALUES (:booking_date, :travel_date, :num_people, :total_price, :user_id, :package_id)
         """)
         
@@ -49,7 +49,7 @@ def get_package_details(package_id):
     try:
         sql = text("""
             SELECT package_name, price 
-            FROM tms_oltp.tour_package_m 
+            FROM public.tour_package_m 
             WHERE package_id = :package_id
         """)
         result = db.session.execute(sql, {"package_id": package_id}).fetchone()
@@ -91,9 +91,9 @@ def get_all_bookings():
                     'duration', p.duration,
                     'image', p.image
                 ) AS package_info
-            FROM tms_oltp.booking_m b
-            JOIN tms_oltp.user_m u ON u.user_id = b.user_id
-            JOIN tms_oltp.tour_package_m p ON p.package_id = b.package_id
+            FROM public.booking_m b
+            JOIN public.user_m u ON u.user_id = b.user_id
+            JOIN public.tour_package_m p ON p.package_id = b.package_id
             ORDER BY b.booking_id DESC;
         """)
 

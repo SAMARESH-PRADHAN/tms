@@ -41,7 +41,7 @@ def forgot_password():
         print("✅ Database connection successful")
 
         # Check if email exists
-        select_query = text("SELECT user_id FROM tms_oltp.user_m WHERE email = :email")
+        select_query = text("SELECT user_id FROM public.user_m WHERE email = :email")
         result = db.session.execute(select_query, {'email': email}).fetchone()
 
         if not result:
@@ -92,7 +92,7 @@ def reset_password():
 
     try:
         # Check if email exists
-        select_query = text("SELECT user_id FROM tms_oltp.user_m WHERE email = :email")
+        select_query = text("SELECT user_id FROM public.user_m WHERE email = :email")
         result = db.session.execute(select_query, {'email': email}).fetchone()
 
         if not result:
@@ -102,7 +102,7 @@ def reset_password():
         hashed_password = bcrypt.hashpw(new_password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
 
         # Update password in DB
-        update_query = text("UPDATE tms_oltp.user_m SET password = :password WHERE email = :email")
+        update_query = text("UPDATE public.user_m SET password = :password WHERE email = :email")
         db.session.execute(update_query, {'password': hashed_password, 'email': email})
         db.session.commit()
 

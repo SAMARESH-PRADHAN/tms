@@ -21,7 +21,7 @@ def submit_contact():
         return jsonify({"message": "All fields are required"}), 400
 
     insert_query = text("""
-        INSERT INTO tms_oltp.contact_m(name, email, phone, message, created_by, updated_by) 
+        INSERT INTO public.contact_m(name, email, phone, message, created_by, updated_by) 
         VALUES(:name, :email, :phone, :message, :created_by, :updated_by)
     """)
 

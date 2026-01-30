@@ -11,10 +11,10 @@ def get_admin_stats():
     conn = db
     select_query = text("""
         SELECT 
-            (SELECT COUNT(*) FROM tms_oltp.user_m) AS total_users,
-            (SELECT COUNT(*) FROM tms_oltp.tour_package_m) AS total_packages,
-            (SELECT COUNT(*) FROM tms_oltp.destination_m) AS total_destinations,
-            (SELECT COUNT(*) FROM tms_oltp.booking_m) AS total_booking
+            (SELECT COUNT(*) FROM public.user_m) AS total_users,
+            (SELECT COUNT(*) FROM public.tour_package_m) AS total_packages,
+            (SELECT COUNT(*) FROM public.destination_m) AS total_destinations,
+            (SELECT COUNT(*) FROM public.booking_m) AS total_booking
     """)
 
     try:
@@ -45,7 +45,7 @@ def user_registrations():
                 SELECT 
                     TO_CHAR(created_on, 'YYYY-MM-DD') AS date,
                     COUNT(*) AS count
-                FROM tms_oltp.user_m
+                FROM public.user_m
                 WHERE created_on::date BETWEEN :start AND :end
                 GROUP BY TO_CHAR(created_on, 'YYYY-MM-DD')
                 ORDER BY date
@@ -56,7 +56,7 @@ def user_registrations():
                 SELECT 
                     TO_CHAR(created_on, 'YYYY-MM-DD') AS date,
                     COUNT(*) AS count
-                FROM tms_oltp.user_m
+                FROM public.user_m
                 GROUP BY TO_CHAR(created_on, 'YYYY-MM-DD')
                 ORDER BY date
             """)
@@ -79,7 +79,7 @@ def feedback_ratings():
     try:
         query = text("""
             SELECT rate_us, COUNT(*) as count
-            FROM tms_oltp.feedback_m
+            FROM public.feedback_m
             GROUP BY rate_us
             ORDER BY rate_us
         """)

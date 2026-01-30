@@ -10,7 +10,7 @@ def get_feedbacks():
     try:
         query = text("""
             SELECT id, name, email, rate_us, comments, created_on 
-            FROM tms_oltp.feedback_m
+            FROM public.feedback_m
             WHERE is_active = true
             ORDER BY created_on DESC
         """)
@@ -41,8 +41,8 @@ def get_feedbacks():
 def delete_feedback(feedback_id):
     try:
         # If you prefer soft delete (mark as inactive), use the next line instead:
-        # query = text("UPDATE tms_oltp.feedback_m SET is_active = false WHERE id = :fid")
-        query = text("DELETE FROM tms_oltp.feedback_m WHERE id = :fid")
+        # query = text("UPDATE public.feedback_m SET is_active = false WHERE id = :fid")
+        query = text("DELETE FROM public.feedback_m WHERE id = :fid")
         
         db.session.execute(query, {"fid": feedback_id})
         db.session.commit()
