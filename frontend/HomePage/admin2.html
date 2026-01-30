@@ -190,7 +190,7 @@
         `);
 
         $.ajax({
-          url: "http://127.0.0.1:5000/admin/stats",
+          url: "https://tms-backend-kfut.onrender.com/admin/stats",
           method: "GET",
           dataType: "json",
           success: function (data) {
@@ -216,7 +216,7 @@
         const end = $("#endDate").val();
 
         $.ajax({
-          url: "http://127.0.0.1:5000/admin/user_registrations",
+          url: "https://tms-backend-kfut.onrender.com/admin/user_registrations",
           method: "GET",
           data: { start, end },
           dataType: "json",
@@ -263,7 +263,7 @@
 
       function loadFeedbackChart() {
         $.ajax({
-          url: "http://127.0.0.1:5000/admin/feedback_ratings",
+          url: "https://tms-backend-kfut.onrender.com/admin/feedback_ratings",
           method: "GET",
           dataType: "json",
           success: function (data) {
