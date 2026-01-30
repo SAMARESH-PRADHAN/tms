@@ -202,7 +202,7 @@
         loadBookings();
 
         function loadBookings() {
-          $.get("http://127.0.0.1:5000/admin/bookingss", function (data) {
+          $.get("https://tms-backend-kfut.onrender.com/admin/bookingss", function (data) {
             filteredBookings = data.data; // Store original bookings for pagination and filtering
             renderBookings();
           });
