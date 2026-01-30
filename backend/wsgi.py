@@ -1,7 +1,4 @@
-from tms_api import app
-import os
-if __name__ == "__main__":
-  port = int(os.environ.get("PORT", 5000))  # fallback to 5000 locally
-  app.run(host="0.0.0.0", port=port)
+from app import app  # import the Flask app from backend/app/__init__.py
 
-  
+if __name__ == "__main__":
+    app.run()
