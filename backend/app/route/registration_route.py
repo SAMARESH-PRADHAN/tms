@@ -26,7 +26,7 @@ def registration():
         return jsonify({"message": "All fields are required"}), 400
   hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
 
-  insert_query = text("""INSERT INTO tms_oltp.user_m(user_name, email, password, mobile, address, role_id, created_by, updated_by)
+  insert_query = text("""INSERT INTO public.user_m(user_name, email, password, mobile, address, role_id, created_by, updated_by)
                       VALUES (:user_name, :email, :password, :mobile, :address, :role_id, :created_by, :updated_by)""")
   
   try:

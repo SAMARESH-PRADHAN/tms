@@ -7,12 +7,16 @@ from dbconfig import db
 
 
 # Configure upload folder
-IMAGE_FOLDER = os.path.abspath(os.path.join(app.root_path, '../image'))  # Adjust path
+IMAGE_FOLDER = os.path.join(app.root_path, 'image')  # Adjust path
 app.config["IMAGE_FOLDER"] = IMAGE_FOLDER
 
 # Ensure the upload folder exists
 if not os.path.exists(IMAGE_FOLDER):
     os.makedirs(IMAGE_FOLDER)
+
+@app.route('/image/<filename>')
+def serve_image(filename):
+    return send_from_directory(app.config["IMAGE_FOLDER"], filename)
 
 # Get All Packages (Including Image path)
 @app.route('/packages', methods=['GET'])
@@ -21,15 +25,16 @@ def get_packages():
         sql = text("""
             SELECT tp.package_id, tp.package_name, tp.description, tp.price, tp.duration, 
                    tp.availability_status, tp.image, tp.destination_id, dm.destination_name 
-            FROM tms_oltp.tour_package_m tp
-            LEFT JOIN tms_oltp.destination_m dm ON tp.destination_id = dm.destination_id
+            FROM public.tour_package_m tp
+            LEFT JOIN public.destination_m dm ON tp.destination_id = dm.destination_id
             ORDER BY tp.package_id ASC
         """)
         result = db.session.execute(sql)
         packages = []
         for row in result.fetchall():
             image_filename = row[6] if row[6] else "default-image.jpg"  # Ensure default image if none
-            image_path = f"../image/{image_filename}" 
+            base_url = request.host_url.rstrip('/')  # e.g. http://127.0.0.1:5000
+            image_path = f"{base_url}/image/{image_filename}"
             packages.append({
                 'package_id': row[0],
                 'package_name': row[1],
@@ -68,7 +73,7 @@ def add_package():
 
         # Insert into database
         sql = text("""
-            INSERT INTO tms_oltp.tour_package_m 
+            INSERT INTO public.tour_package_m 
             (package_name, description, price, duration, availability_status, created_by, updated_by, image, destination_id)
             VALUES (:package_name, :description, :price, :duration, :availability_status, :created_by, :updated_by, :image, :destination_id)
         """)
@@ -96,7 +101,7 @@ def add_package():
 @app.route('/packages/<int:package_id>', methods=['PUT'])
 def update_package(package_id):
     try:
-        sql_select = text("SELECT image FROM tms_oltp.tour_package_m WHERE package_id = :package_id")
+        sql_select = text("SELECT image FROM public.tour_package_m WHERE package_id = :package_id")
         result = db.session.execute(sql_select, {'package_id': package_id}).fetchone()
 
         if not result:
@@ -121,7 +126,7 @@ def update_package(package_id):
 
         # Update database
         sql_update = text("""
-            UPDATE tms_oltp.tour_package_m
+            UPDATE public.tour_package_m
             SET package_name = :package_name, description = :description, price = :price, 
                 duration = :duration, availability_status = :availability_status, image = :image, destination_id = :destination_id
             WHERE package_id = :package_id
@@ -143,12 +148,13 @@ def update_package(package_id):
 
     except Exception as e:
         db.session.rollback()
+        print("UPDATE ERROR:", str(e))
         return jsonify({'message': 'Error updating package', 'error': str(e)}), 500
 
 
 @app.route('/packages/<int:package_id>', methods=['DELETE'])
 def delete_package(package_id):
-    sql = text("DELETE FROM tms_oltp.tour_package_m WHERE package_id = :package_id")
+    sql = text("DELETE FROM public.tour_package_m WHERE package_id = :package_id")
     try:
         result = db.session.execute(sql, {'package_id': package_id})
         if result.rowcount == 0:
@@ -165,7 +171,7 @@ def delete_package(package_id):
 @app.route('/destinationsP', methods=['GET'])
 def get_destinations_p():
     try:
-        sql = text("SELECT destination_id, destination_name FROM tms_oltp.destination_m")
+        sql = text("SELECT destination_id, destination_name FROM public.destination_m")
         result = db.session.execute(sql)
         destinations = [{"destination_id": row[0], "d_name": row[1]} for row in result.fetchall()]
         return jsonify(destinations), 200

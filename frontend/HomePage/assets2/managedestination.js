@@ -43,8 +43,8 @@ $(document).ready(function () {
   $("#destinationForm").submit(function (e) {
     e.preventDefault();
     let destination_name = $("#destinationName").val();
-    let longitude = $("#Longitude").val();
-    let latitude = $("#Latitude").val();
+    let longitude = parseFloat($("#Longitude").val());
+    let latitude = parseFloat($("#Latitude").val());
 
     $.ajax({
       url: "http://127.0.0.1:5000/destinations",
@@ -147,6 +147,6 @@ $("<style>")
       padding: 5px 10px;
       cursor: pointer;
   }
-`
+`,
   )
   .appendTo("head");

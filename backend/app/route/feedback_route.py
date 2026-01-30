@@ -18,7 +18,7 @@ def submit_feedback():
 
     if not all([name, email, rate_us, comments]):
         return jsonify({"message": "All fields are required"}), 400
-    insert_query = text("""INSERT INTO tms_oltp.feedback_m(name, email, rate_us, comments)
+    insert_query = text("""INSERT INTO public.feedback_m(name, email, rate_us, comments)
                       VALUES (:name, :email, :rate_us, :comments)""")
     
     try:

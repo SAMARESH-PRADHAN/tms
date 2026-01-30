@@ -18,7 +18,7 @@ def login():
 
     select_query = text("""
         SELECT user_id, user_name, email, mobile, password, address, role_id, is_active 
-        FROM tms_oltp.user_m 
+        FROM public.user_m 
         WHERE email = :email
     """)
 
