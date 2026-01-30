@@ -127,11 +127,12 @@ $(document).ready(function () {
       mobile: mobile,
       address: address,
     };
+const API_BASE = "https://tms-backend.onrender.com"; // Render backend URL
 
     // AJAX request
     $.ajax({
       type: "POST",
-      url: "http://127.0.0.1:5000/registration",
+      url: `${API_BASE}/registration`,
       contentType: "application/json",
       data: JSON.stringify(data),
       success: function (response) {

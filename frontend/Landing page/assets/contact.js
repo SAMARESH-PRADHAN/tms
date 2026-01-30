@@ -35,6 +35,7 @@ inputs.forEach((input) => {
   input.addEventListener("focus", focusFunc);
   input.addEventListener("blur", blurFunc);
 });
+const API_BASE = "https://tms-backend.onrender.com"; // Render backend URL
 
 $(document).ready(function () {
   $(".contact-form form").on("submit", function (e) {
@@ -48,7 +49,7 @@ $(document).ready(function () {
     };
 
     $.ajax({
-      url: "http://127.0.0.1:5000/contact", // API endpoint
+      url: `${API_BASE}/contact`, // API endpoint
       type: "POST",
       contentType: "application/json",
       data: JSON.stringify(contactData),

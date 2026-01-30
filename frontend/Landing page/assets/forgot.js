@@ -27,9 +27,10 @@ function requestOTP() {
     swal("Error!", "Please enter your email.", "error");
     return;
   }
+const API_BASE = "https://tms-backend.onrender.com"; // Render backend URL
 
   $.ajax({
-    url: "http://127.0.0.1:5000/forgot-password",
+    url: `${API_BASE}/forgot-password`,
     type: "POST",
     contentType: "application/json",
     data: JSON.stringify({ email: userEmail }),
@@ -54,7 +55,7 @@ function verifyOTP() {
   }
 
   $.ajax({
-    url: "http://127.0.0.1:5000/verify-otp",
+    url: `${API_BASE}verify-otp`,
     type: "POST",
     contentType: "application/json",
     data: JSON.stringify({ email: userEmail, otp: otp }),
@@ -79,7 +80,7 @@ function resetPassword() {
   }
 
   $.ajax({
-    url: "http://127.0.0.1:5000/reset-password",
+    url: `${API_BASE}/reset-password`,
     type: "POST",
     contentType: "application/json",
     data: JSON.stringify({ email: userEmail, new_password: newPassword }),
