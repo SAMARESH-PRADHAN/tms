@@ -16,13 +16,13 @@ $(document).ready(function () {
       dataType: "json",
       success: function (users) {
         let rows = "";
-        users.forEach((user) => {
+        users.forEach((user, index) => {
           let isActive = user.status === "Active";
           let statusColor = isActive ? "green" : "red";
           let statusText = isActive ? "Deactivate" : "Activate";
           rows += `
                       <tr data-id="${user.user_id}">
-                          <td>${user.user_id}</td>
+                          <td>${index + 1}</td>
                           <td>${user.user_name}</td>
                           <td>${user.email}</td>
                           <td>

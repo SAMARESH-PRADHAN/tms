@@ -14,22 +14,20 @@
   color: #333;
 }
 
-
-.packages{
+.packages {
   margin-top: 70px;
 }
 
-.packages .box-container{
+.packages .box-container {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  gap:1rem;
+  gap: 1rem;
 }
 
-.packages .box-container .box{
-
+.packages .box-container .box {
   height: 100%;
-  min-height: 650px;
+  min-height: 550px;
   max-width: 570px;
   background: linear-gradient(to bottom right, #ffffff, #f7f7f7);
   border-radius: 16px;
@@ -39,7 +37,9 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
   position: relative;
   margin-top: 50px;
 }
@@ -49,26 +49,26 @@
   transition: all 0.3s ease-in-out;
 }
 
-.packages .box-container .box img{
+.packages .box-container .box img {
   height: 18rem;
-  width:100%;
+  width: 100%;
   object-fit: cover;
   border-radius: 15px;
   -webkit-filter: drop-shadow(5px 5px 5px #161616);
   filter: drop-shadow(5px 5px 5px #0f0f0f);
 }
 
-.packages .box-container .box .content{
+.packages .box-container .box .content {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-  padding:1rem;
+  padding: 1rem;
 }
 
-.packages .box-container .box .content h3{
-  font-size:1.5rem;
-  color:#333;
+.packages .box-container .box .content h3 {
+  font-size: 1.5rem;
+  color: #333;
 }
 
 .package-top {
@@ -90,37 +90,37 @@
   }
 }
 
-.packages .box-container .box .content h3 i{
-  color:var(--anycolor);
+.packages .box-container .box .content h3 i {
+  color: var(--anycolor);
 }
 
-.packages .box-container .box .content p{
-  font-size:1rem;
-  color:rgb(20, 19, 19);
-  padding:0.7rem 0;
+.packages .box-container .box .content p {
+  font-size: 1rem;
+  color: rgb(20, 19, 19);
+  padding: 0.7rem 0;
 }
 
-.packages .box-container .box .content .stars i{
-  font-size:1rem;
-  color:rgb(255, 187, 0);
+.packages .box-container .box .content .stars i {
+  font-size: 1rem;
+  color: rgb(255, 187, 0);
 }
 
-.packages .box-container .box .content .price{
+.packages .box-container .box .content .price {
   font-size: 1.5rem;
-  color:#333;
+  color: #333;
   padding-top: 0.7rem;
 }
 
-.packages .box-container .box .content .price span{
-  color:#666;
+.packages .box-container .box .content .price span {
+  color: #666;
   font-size: 1rem;
   text-decoration: line-through;
 }
-.packages .box:hover{
+.packages .box:hover {
   box-shadow: 0 1rem 2rem rgb(0, 0, 0);
 }
 
- /* Availability & Book Buttons */
+/* Availability & Book Buttons */
 .availability-btn,
 .book-now-btn {
   flex: 1;
@@ -146,7 +146,6 @@
 .book-now-btn {
   background-color: #ff3c3c;
   color: white;
- 
 }
 
 .book-now-btn:hover {
@@ -178,7 +177,7 @@
   color: #cf0c0c;
 }
 
-#bll{
+#bll {
   display: flex;
   justify-content: space-evenly;
   gap: 30px;
@@ -188,7 +187,7 @@
   margin-left: auto;
 }
 
-#package-see a{
+#package-see a {
   text-decoration: none;
   font-weight: 500;
 }
@@ -221,13 +220,12 @@
 .pagination-btn.active {
   background-color: #333;
   color: #fff;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 .filters {
   text-align: center;
   margin-bottom: 30px;
   animation: fadeInUp 1s ease-in-out;
-  
 }
 
 .filter-btn {
@@ -243,7 +241,9 @@
   transition: all 0.4s ease;
   position: relative;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .filter-btn::before {
