@@ -95,9 +95,13 @@ $(document).ready(function () {
           }">
                         ${availabilityText}
                       </button>
-                      <button class="book-now-btn" data-id="${
-                        pkg.package_id
-                      }">Book Now</button>
+                      ${
+            pkg.availability_status
+              ? `<button class="book-now-btn" data-id="${pkg.package_id}">
+                   Book Now
+                 </button>`
+              : ``
+          }
                     </div>
                   </div>
                 </div>

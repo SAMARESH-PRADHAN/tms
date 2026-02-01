@@ -313,10 +313,10 @@
           const bookingsToShow = filteredBookings.slice(startIndex, endIndex);
 
           let html = "";
-          bookingsToShow.forEach((b) => {
+          bookingsToShow.forEach((b, index) => {
             html += `
               <div class="card">
-                <h3>Booking #${b.booking_id}</h3>
+                <h3>Booking #${index+1}</h3>
                 <p><b>Booking Date:</b> ${b.booking_date}</p>
                 <p><b>Travel Date:</b> ${b.travel_date}</p>
                 <p><b>People:</b> ${b.num_people}</p>

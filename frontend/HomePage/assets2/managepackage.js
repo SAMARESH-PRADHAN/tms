@@ -42,12 +42,12 @@ $(document).ready(function () {
       dataType: "json",
       success: function (data) {
         let rows = "";
-        data.forEach((pkg) => {
+        data.forEach((pkg, index) => {
           let imagePath = pkg.image ? pkg.image : "../image/default-image.jpg"; // Use correct path
 
           rows += `
            <tr data-id="${pkg.package_id}">
-             <td>${pkg.package_id}</td>
+             <td>${index+1}</td>
              <td>${pkg.package_name}</td>
              <td>${pkg.description}</td>
              <td>${pkg.price}</td>
